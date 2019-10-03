@@ -15,7 +15,8 @@ async function runAction(): Promise<void> {
   const deployment = await octokit.repos.createDeployment({
     ref: pull.data.head.ref,
     owner: context.repo.owner,
-    repo: context.repo.repo
+    repo: context.repo.repo,
+    required_contexts: []
   });
 
   console.log(`Deployment `, deployment);
