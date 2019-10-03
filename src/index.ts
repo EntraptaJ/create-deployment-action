@@ -11,7 +11,23 @@ async function runAction(): Promise<void> {
     owner: context.repo.owner,
     repo: context.repo.repo
   });
-  console.log(pull);
+
+  const deployment = await octokit.repos.createDeployment({
+    ref: pull.data.head.sha,
+    owner: context.repo.owner,
+    repo: context.repo.repo
+  });
+
+  console.log(`Deployment `, deployment);
+
+  const deploymentStatus = await octokit.repos.createDeploymentStatus({
+    owner: context.repo.owner,
+    repo: context.repo.repo,
+    deployment_id: deployment.data.id,
+    state: 'success',
+    target_url: 'https://example.com'
+  });
+  console.log(`Deployment Status`, deploymentStatus.data);
   // octokit.pulls.get()
 }
 
