@@ -13,7 +13,7 @@ async function runAction(): Promise<void> {
   });
 
   const deployment = await octokit.repos.createDeployment({
-    ref: pull.data.head.sha,
+    ref: pull.data.head.ref,
     owner: context.repo.owner,
     repo: context.repo.repo
   });
