@@ -6,10 +6,13 @@ const githubToken = getInput('githubToken');
 const octokit = new GitHub(githubToken);
 
 async function runAction(): Promise<void> {
-  console.log(context);
+  const pull = await octokit.pulls.get({
+    pull_number: context.payload.pull_request.number,
+    owner: context.repo.owner,
+    repo: context.repo.repo
+  });
+  console.log(pull);
   // octokit.pulls.get()
-
-  // octokit.repos.createDeployment({ ref })
 }
 
 runAction();
