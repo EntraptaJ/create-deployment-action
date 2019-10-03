@@ -1,0 +1,6 @@
+name: 'Create Deployment'
+description: 'WIP GitHub Create Deployment Action'
+author: 'Kristian Jones'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
